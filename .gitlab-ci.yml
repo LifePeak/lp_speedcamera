@@ -1,0 +1,33 @@
+
+variables:
+  ACCESS_TOKEN: glpat-LRx97k39i__ZzGtgRy-N
+  README_PATH: ./lp_factionsystem/Readme.md
+  TAG: Fractionsystem
+before_script:
+  - apk update && apk add git
+  - git clone https://oauth2:$ACCESS_TOKEN@$CI_SERVER_HOST/lifepeak/skripts/fivem_lua_linter.git temp
+  - mv temp/*.* .
+  - mv temp/.luacheckrc.template .
+  - rm -rf temp
+
+include:
+- project: lifepeak/skripts/fivem_lua_linter
+  ref: main
+  file:
+      - .gitlab-ci.yml
+#--------------------------
+
+#release_job:
+#  stage: .post
+#  image: registry.gitlab.com/gitlab-org/release-cli:latest
+#  rules:
+#    - if: $CI_COMMIT_TAG
+#      when: never                                  # Do not run this job when a tag is created manually
+#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH  # Run this job when commits are pushed or merged to the default branch
+#  script:
+#    - echo "running release_job for $TAG"
+#  release:
+#    name: 'Release $TAG'
+#    description: $README_PATH
+#    tag_name: '$TAG'                                                 # variables must be defined elsewhere
+#    ref: '$CI_COMMIT_SHA'                                            # in the pipeline. For example, in the

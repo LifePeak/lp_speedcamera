@@ -164,7 +164,7 @@ You can lock/unlock and share your key with your frends.
 It is recommended to use a billing system.
 -> esx_billing
 -> okokBilling
-If you have any questions, contact the LifePeak team.
+### If you have any questions, contact the LifePeak team.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 

@@ -4,7 +4,6 @@ variables:
   README_PATH: ./lp_factionsystem/Readme.md
   TAG: Fractionsystem
 before_script:
-  - echo $ACCESS_TOKEN
   - apk update && apk add git
   - git clone https://oauth2:$ACCESS_TOKEN@$CI_SERVER_HOST/lifepeak/skripts/fivem_lua_linter.git temp
   - mv temp/*.* .

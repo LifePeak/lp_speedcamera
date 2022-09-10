@@ -146,10 +146,10 @@ RegisterCommand(Config.DeleteSpeedCamera, function(source, args, rawCommand)
     local job = ESX.GetPlayerData().job.name
     local camname = args[1]
     if job == Config.Society then
-        for k,v in pairs(SpeedCameras) do
+        for index,v in ipairs(SpeedCameras) do
             if camname == v.SpeedCameraName then
                 RemoveBlip(v.Blip)
-                table.remove(SpeedCameras, SpeedCamera)
+                table.remove(SpeedCameras, index)
             end
         end
     else

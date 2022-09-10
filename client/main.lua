@@ -44,7 +44,7 @@ Citizen.CreateThread(function()
             local job = ESX.GetPlayerData().job.name
             local camname = v.SpeedCameraName
             local shootspeed = speed -v.MaxKmH
-            if Config.PolicePay == true then 
+            if Config.PolicePay == true then
                 if distanceCheck(pedcoord,v.Position) <= 10 then
                     if speed > v.MaxKmH then
                         if isShoot == false then
@@ -145,12 +145,11 @@ end, false)
 RegisterCommand(Config.DeleteSpeedCamera, function(source, args, rawCommand)
     local job = ESX.GetPlayerData().job.name
     local camname = args[1]
-    local pedcoord = GetEntityCoords(PlayerPedId())
     if job == Config.Society then
         for k,v in pairs(SpeedCameras) do
             if camname == v.SpeedCameraName then
                 RemoveBlip(v.Blip)
-                table.remove(SpeedCameras, SpeedCamera)     
+                table.remove(SpeedCameras, SpeedCamera)
             end
         end
     else
@@ -161,7 +160,6 @@ end)
 --Billing System 
 function SendBill(camname, speed)
     if Config.Billing == "esx_billing" then
-        local player = PlayerPedId()
         for k,v in pairs(SpeedCameras) do
             local amount = Config.BillingAmount
             if camname == v.SpeedCameraName then
@@ -170,7 +168,6 @@ function SendBill(camname, speed)
             end
         end
     elseif Config.Billing == "okokBilling" then
-        local player = PlayerPedId()
         for k,v in pairs(SpeedCameras) do
             local amount = Config.BillingAmount
             if camname == v.SpeedCameraName then
@@ -185,8 +182,7 @@ function SendBill(camname, speed)
                 TriggerServerEvent("okokBilling:CreateInvoice", data)
             end
         end
-    elseif Config.Billing == "none" then 
-        local player = PlayerPedId()
+    elseif Config.Billing == "none" then
         for k,v in pairs(SpeedCameras) do
             local amount = Config.BillingAmount
             if camname == v.SpeedCameraName then

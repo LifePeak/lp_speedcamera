@@ -12,7 +12,7 @@ Config.DeleteSpeedCamera = "spcdelete"      -- Command to delete a SpeedCamera
 Config.Blips = {
     ShowBlip = true,                        -- Speedcamera Blips on Map
     BlipName = "Speedcamera",               -- Name for Blip
-    BlipScale = 0.5,                    
+    BlipScale = 0.5,
     BlipColour = 2,
     BlipSprite = 184
 }
@@ -22,7 +22,7 @@ Config.Blips = {
 Config.Locations = {
     [1] = {
         SpeedCameraName = "Highway Point",
-        MaxKmH  = 130,                            
+        MaxKmH  = 130,
         Position = vector3(1437.810546875,752.94683837891,77.623649597168)
     },
     [2] = {

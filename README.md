@@ -12,7 +12,7 @@
   <h3 align="center">LifePeak - Skripts</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Any fool can write code that a computer can understand. Good programmers write code that humans can understand!
     <br />
     <a href="https://lifepeak-scripts.tebex.io"><strong>Explore us on Tebex  »»</strong></a>
     <br />

@@ -159,7 +159,7 @@ You can lock/unlock and share your key with your frends.
    ```
 3. add the staring command to your server.cfg
    ```cfg
-   start lp_carlock
+   start lp_speedcamera
    ```
 It is recommended to use a billing system.
 -> esx_billing

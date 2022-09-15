@@ -1,5 +1,6 @@
 Locales['en'] = {
     ['SpeedShoot'] = '%s: You drove %d km/H faster than allowed',
+    ["SpeedFine"]  = "You had to pay %s for your fine.",
 
     --okokBilling
     ['BillingName'] = 'Speedcamera',

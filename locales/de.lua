@@ -1,5 +1,6 @@
 Locales['de'] = {
     ['SpeedShoot'] = '%s: Du wurdest mit %d kmH zu schnell geblitzt!',
+    ["SpeedFine"]  = "Du musst %s € für deinen Verstoß bezahlen",
 
     --okokBilling
     ['BillingName'] = 'Blitzer',

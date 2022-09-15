@@ -165,6 +165,7 @@ function SendBill(camname, speed)
             if camname == v.SpeedCameraName then
                 local Bill = speed * amount
                 TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(PlayerId()), 'society_police', _U('BillingName'), Bill, true)
+                ESX.ShowNotification(_U("SpeedFine", math.floor(Bill)))
             end
         end
     elseif Config.Billing == "okokBilling" then
@@ -180,6 +181,7 @@ function SendBill(camname, speed)
                 data.invoice_value = Bill
                 data.invoice_notes = _U("BillingNote")
                 TriggerServerEvent("okokBilling:CreateInvoice", data)
+                ESX.ShowNotification(_U("SpeedFine", math.floor(Bill)))
             end
         end
     elseif Config.Billing == "none" then
@@ -188,6 +190,7 @@ function SendBill(camname, speed)
             if camname == v.SpeedCameraName then
                 local Bill = speed * amount
                TriggerServerEvent("lp_speedcamera:SendBilling", Bill)
+               ESX.ShowNotification(_U("SpeedFine", math.floor(Bill)))
             end
         end
     end

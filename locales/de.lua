@@ -8,5 +8,5 @@ Locales['de'] = {
     ["BillingNote"] = "Du wurdest geblitzt.",
 
         --Job
-    ["IsntPolice"]  = "You are not a cop"
+    ["IsntPolice"]  = "Du bist kein Polizist"
 }

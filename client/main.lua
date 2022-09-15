@@ -10,10 +10,10 @@ TriggerEvent('chat:addSuggestion', '/'..Config.DeleteSpeedCamera, "CameraName", 
 })
 
 
---DistanceCheck
+
 local SpeedCameras = {}
 
-
+--DistanceCheck
 function distanceCheck(vec1, vec2)
 
     local distance = GetDistanceBetweenCoords(vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z, true)
@@ -39,7 +39,8 @@ Citizen.CreateThread(function()
 
     while true do
         local pedcoord = GetEntityCoords(PlayerPedId())
-        local speed = GetEntitySpeed(PlayerPedId())
+        -- Calculating Vehicle Speed
+        local speed = GetEntitySpeed(PlayerPedId()) * 3.6 -- https://docs.fivem.net/natives/?_0xD5037BA82E12416F -> GetEntitySpeed * 3.6 = kmh
         for k,v in pairs(Config.Locations) do
             local job = ESX.GetPlayerData().job.name
             local camname = v.SpeedCameraName

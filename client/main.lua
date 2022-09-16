@@ -60,8 +60,6 @@ Citizen.CreateThread(function()
                             isShoot = true
                             ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                             SendBill(camname, speed)
-                            print(camname)
-                            print(speed)
                             Citizen.SetTimeout(10000, function()
                                 isShoot = false
                             end)
@@ -76,8 +74,6 @@ Citizen.CreateThread(function()
                                 isShoot = true
                                 ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                                 SendBill(camname, speed)
-                                print(camname)
-                                print(speed)
                                 Citizen.SetTimeout(10000, function()
                                     isShoot = false
                                 end)
@@ -97,7 +93,6 @@ Citizen.CreateThread(function()
                     if speed > v.MaxKmH then
                         if isShoot == false then
                             isShoot = true
-                            print(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                             ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                             SendBill(camname, speed)
                             Citizen.SetTimeout(10000, function()
@@ -112,7 +107,6 @@ Citizen.CreateThread(function()
                         if speed > v.MaxKmH then
                             if isShoot == false then
                                 isShoot = true
-                                print(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                                 ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                                 SendBill(camname, speed)
                                 Citizen.SetTimeout(10000, function()

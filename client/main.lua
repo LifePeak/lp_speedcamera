@@ -109,7 +109,6 @@ Citizen.CreateThread(function()
                 end
             end
         end
-        local letSleep = true
         for k,v in pairs(SpeedCameras) do
             local shootspeed = speed -v.MaxKmH
             local campos = v.CameraPosition

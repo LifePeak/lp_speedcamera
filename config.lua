@@ -1,5 +1,5 @@
 Config = {}
-Config.Locale = "de"
+Config.Locale = "en"
 Config.Billing = "none"                     -- Change your Billing System -> "esx_billing" / "okokBilling" / "none"
 Config.BillingAmount = 5                    -- Amount per Km/H
 Config.Society = "police"                   -- Billing Society / Create Speedcamera - Policejob

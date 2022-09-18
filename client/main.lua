@@ -23,6 +23,16 @@ function distanceCheck(vec1, vec2)
     return distance
 end
 
+function canReceiveBill()
+    if GetVehiclePedIsIn(PlayerPedId(), false) ~= 0 then
+        if GetPedInVehicleSeat(GetVehiclePedIsIn(PlayerPedId()), -1) == PlayerPedId() then
+            return true
+        end
+    else
+        return false
+    end
+end
+
 
 --Script Start / Locations
 Citizen.CreateThread(function()
@@ -67,7 +77,7 @@ Citizen.CreateThread(function()
             local shootspeed = speed -v.MaxKmH
             if Config.PolicePay == true then
                 if distanceCheck(pedcoord,v.Position) <= 10 then
-                    if speed > v.MaxKmH then
+                    if speed > v.MaxKmH and canReceiveBill() then
                         if isShoot == false then
                             isShoot = true
                             ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
@@ -83,7 +93,7 @@ Citizen.CreateThread(function()
             elseif Config.PolicePay == false then
                 if job ~= Config.Society then
                     if distanceCheck(pedcoord,v.Position) <= 10 then
-                        if speed > v.MaxKmH then
+                        if speed > v.MaxKmH and canReceiveBill() then
                             if isShoot == false then
                                 isShoot = true
                                 ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
@@ -106,7 +116,7 @@ Citizen.CreateThread(function()
             local camname = v.SpeedCameraName
             if Config.PolicePay == true then
                 if distanceCheck(pedcoord,campos) <= 10 then
-                    if speed > v.MaxKmH then
+                    if speed > v.MaxKmH and canReceiveBill() then
                         if isShoot == false then
                             isShoot = true
                             ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
@@ -122,7 +132,7 @@ Citizen.CreateThread(function()
             elseif Config.PolicePay == false then
                 if job ~= Config.Society then
                     if distanceCheck(pedcoord,campos) <= 10 then
-                        if speed > v.MaxKmH then
+                        if speed > v.MaxKmH and canReceiveBill() then
                             if isShoot == false then
                                 isShoot = true
                                 ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))

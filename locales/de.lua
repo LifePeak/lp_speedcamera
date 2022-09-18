@@ -1,4 +1,7 @@
 Locales['de'] = {
+    ["CreateCam"]  = "Blitzer wurde installiert",
+    ["RemoveCam"]  = "Blitzer wurde entfernt",
+
     ['SpeedShoot'] = '%s: Du wurdest mit %d kmH zu schnell geblitzt!',
     ["SpeedFine"]  = "Du musst %s € für deinen Verstoß bezahlen",
 

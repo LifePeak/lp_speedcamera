@@ -19,6 +19,7 @@ if Config.UseOldESX then
     end)
 end
 
+
 local PlayerData
 local job
 

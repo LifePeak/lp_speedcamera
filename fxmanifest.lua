@@ -7,7 +7,7 @@ author "LifePeak"
 version "1.0.0"
 
 shared_script {
-	'@es_extended/imports.lua',
+	'@es_extended/imports.lua', -- Remove this if you use ESX v1 and NOT ESX Legacy
 	'@es_extended/locale.lua',
     'locales/*.lua',
 	'config.lua'

@@ -1,5 +1,4 @@
 
-
 --Chat
 TriggerEvent('chat:addSuggestion', "/"..Config.CreateSpeedCamera, 'CameraName", MaxKmH', {
     { name="CameraName", help="Test Blitzer" },
@@ -9,6 +8,16 @@ TriggerEvent('chat:addSuggestion', '/'..Config.DeleteSpeedCamera, "CameraName", 
     { name="CameraName", help="Test Blitzer" }
 })
 
+if Config.UseOldESX then
+    ESX = nil
+
+    Citizen.CreateThread(function()
+        while ESX == nil do
+            TriggerEvent(Config.SharedObject, function(obj) ESX = obj end)
+            Citizen.Wait(0)
+        end
+    end)
+end
 
 local PlayerData
 local job

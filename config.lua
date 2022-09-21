@@ -4,7 +4,7 @@ Config.UseOldESX = false -- Set this to true if you use and older version of ESX
 Config.SharedObject = 'esx:getSharedObject'
 
 Config.Locale = "en"
-Config.Billing = "none"                     -- Change your Billing System -> "esx_billing" / "okokBilling" / "none"
+Config.Billing = "none"                     -- Change your Billing System -> "esx_billing" / "okokBilling" / "okokBillingV2" / "none"
 Config.BillingAmount = 5                    -- Amount per Km/H
 Config.Society = "police"                   -- Billing Society / Create Speedcamera - Policejob
 Config.PolicePay = true                     -- Can police officers be fined true/false

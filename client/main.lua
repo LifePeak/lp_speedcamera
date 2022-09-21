@@ -84,7 +84,7 @@ Citizen.CreateThread(function()
         local letSleep = true
         for k,v in pairs(Config.Locations) do
             local camname = v.SpeedCameraName
-            local shootspeed = speed -v.MaxKmH
+            local shootspeed = speed - v.MaxKmH
             if Config.PolicePay == true then
                 if distanceCheck(pedcoord,v.Position) <= 10 then
                     if speed > v.MaxKmH and canReceiveBill() then
@@ -92,7 +92,7 @@ Citizen.CreateThread(function()
                             isShoot = true
                             ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                             AnimpostfxPlay('PPOrange', 200, false)
-                            SendBill(camname, speed)
+                            SendBill(camname, shootspeed)
                             Citizen.SetTimeout(10000, function()
                                 isShoot = false
                             end)
@@ -108,7 +108,7 @@ Citizen.CreateThread(function()
                                 isShoot = true
                                 ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                                 AnimpostfxPlay('PPOrange', 200, false)
-                                SendBill(camname, speed)
+                                SendBill(camname, shootspeed)
                                 Citizen.SetTimeout(10000, function()
                                     isShoot = false
                                 end)
@@ -120,7 +120,7 @@ Citizen.CreateThread(function()
             end
         end
         for k,v in pairs(SpeedCameras) do
-            local shootspeed = speed -v.MaxKmH
+            local shootspeed = speed - v.MaxKmH
             local campos = v.CameraPosition
             local camname = v.SpeedCameraName
             if Config.PolicePay == true then
@@ -130,7 +130,7 @@ Citizen.CreateThread(function()
                             isShoot = true
                             ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                             AnimpostfxPlay('PPOrange', 200, false)
-                            SendBill(camname, speed)
+                            SendBill(camname, shootspeed)
                             Citizen.SetTimeout(10000, function()
                                 isShoot = false
                             end)
@@ -146,7 +146,7 @@ Citizen.CreateThread(function()
                                 isShoot = true
                                 ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
                                 AnimpostfxPlay('PPOrange', 200, false)
-                                SendBill(camname, speed)
+                                SendBill(camname, shootspeed)
                                 Citizen.SetTimeout(10000, function()
                                     isShoot = false
                                 end)
@@ -207,12 +207,12 @@ RegisterCommand(Config.DeleteSpeedCamera, function(source, args, rawCommand)
 end)
 
 --Billing System 
-function SendBill(camname, speed)
+function SendBill(camname, shootspeed)
     if Config.Billing == "esx_billing" then
         for k,v in pairs(SpeedCameras) do
             local amount = Config.BillingAmount
             if camname == v.SpeedCameraName then
-                local Bill = speed * amount
+                local Bill = shootspeed * amount
                 TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(PlayerId()), 'society_police', _U('BillingName'), Bill, true)
                 ESX.ShowNotification(_U("SpeedFine", math.floor(Bill)))
             end
@@ -221,7 +221,7 @@ function SendBill(camname, speed)
         for k,v in pairs(SpeedCameras) do
             local amount = Config.BillingAmount
             if camname == v.SpeedCameraName then
-                local Bill = speed * amount
+                local Bill = shootspeed * amount
                 local data = {}
                 data.target = GetPlayerServerId(PlayerId())
                 data.society = Config.Society
@@ -237,9 +237,19 @@ function SendBill(camname, speed)
         for k,v in pairs(SpeedCameras) do
             local amount = Config.BillingAmount
             if camname == v.SpeedCameraName then
-                local Bill = speed * amount
+                local Bill = shootspeed * amount
                TriggerServerEvent("lp_speedcamera:SendBilling", Bill)
                ESX.ShowNotification(_U("SpeedFine", math.floor(Bill)))
+            end
+        end
+    elseif Config.Billing == "okokBillingV2" then
+        for k,v in pairs(SpeedCameras) do
+            if camname == v.SpeedCameraName then
+                local target = GetPlayerServerId(PlayerId())
+                local society = Config.Society
+                local price = Config.BillingAmount * shootspeed
+                local invoiceSource = v.SpeedCameraName
+                TriggerServerEvent("okokBilling:CreateCustomInvoice", target, price, _U("BillingReason"), invoiceSource, society, _U("SocietyName"))
             end
         end
     end

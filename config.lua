@@ -10,6 +10,8 @@ Config.Society = "police"                   -- Billing Society / Create Speedcam
 Config.PolicePay = true                     -- Can police officers be fined true/false
 Config.CreateSpeedCamera = "spccreate"      -- Command to create a SpeedCamera
 Config.DeleteSpeedCamera = "spcdelete"      -- Command to delete a SpeedCamera
+Config.Radius = 10.0                        -- Set the range of the SpeedCamera
+Config.Key = "X"                            -- Key for the Menu
 
 
 -- Blips

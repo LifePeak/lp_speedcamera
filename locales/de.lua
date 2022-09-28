@@ -12,5 +12,9 @@ Locales['de'] = {
     ["BillingNote"] = "Du wurdest geblitzt.",
 
         --Job
-    ["IsntPolice"]  = "Du bist kein Polizist"
+    ["IsntPolice"]  = "Du bist kein Polizist",
+
+    --Contex Menu
+    ["BuildCamera"] = "Blitzer aufbauen",
+    ["RemoveCamera"] = "Blitzer abbauen"
 }

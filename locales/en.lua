@@ -12,5 +12,9 @@ Locales['en'] = {
     ["BillingNote"] = "You got flashed",
 
     --Job
-    ["IsntPolice"]  = "You are not a cop"
+    ["IsntPolice"]  = "You are not a cop",
+
+    --Contex Menu
+    ["BuildCamera"] = "Build camera",
+    ["RemoveCamera"] = "Remove camera"
 }

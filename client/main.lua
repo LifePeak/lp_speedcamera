@@ -56,7 +56,7 @@ function canReceiveBill()
 end
 
 Citizen.CreateThread(function()
-    while true do 
+    while true do
         PlayerData = ESX.GetPlayerData()
         job = PlayerData.job.name
         if job == Config.Society then
@@ -100,7 +100,7 @@ Citizen.CreateThread(function()
             SetBlipColour(blipRadius, Config.Blips.BlipColour)
             local coords = v.Position
 
-            local blip = AddBlipForRadius(coords, Config.Radius)
+            local RadiusBlip = AddBlipForRadius(coords, Config.Radius)
             SetBlipColour(blip, 1)
             SetBlipAlpha(blip, 128)
         
@@ -323,8 +323,8 @@ function openMenu()
         },
     }
 
-    ESX.OpenContext("right" , elements, 
-    function(menu,element) 
+    ESX.OpenContext("right" , elements,
+    function(menu,element)
 
     if element.title == _U("BuildCamera") then
         CreateCameraObject()
@@ -337,7 +337,7 @@ function openMenu()
       end
   
     ESX.CloseContext()
-  end, function(menu) 
+  end, function(menu)
   end)
 end
 

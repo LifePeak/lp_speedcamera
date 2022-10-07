@@ -35,6 +35,7 @@ local PlayerData
 local job
 
 
+
 local SpeedCameras = {}
 
 --DistanceCheck
@@ -61,7 +62,6 @@ Citizen.CreateThread(function()
         job = PlayerData.job.name
         if job == Config.Society then
             if IsControlJustPressed(0, Keys[Config.Key]) then
-                print("OPENMENU")
                 openMenu()
             end
         end
@@ -125,83 +125,85 @@ Citizen.CreateThread(function()
         -- Calculating Vehicle Speed
         local speed = GetEntitySpeed(PlayerPedId()) * 3.6 -- https://docs.fivem.net/natives/?_0xD5037BA82E12416F -> GetEntitySpeed * 3.6 = kmh
         local letSleep = true
-        for k,v in pairs(Config.Locations) do
-            local camname = v.SpeedCameraName
-            local shootspeed = speed - v.MaxKmH
-            if Config.PolicePay == true then
-                if distanceCheck(pedcoord,v.Position) <= Config.Radius then
-                    if speed > v.MaxKmH and canReceiveBill() then
-                        if isShoot == false then
-                            isShoot = true
-                            ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
-                            AnimpostfxPlay('PPOrange', 200, false)
-                            SendBill(camname, shootspeed)
-                            Citizen.SetTimeout(10000, function()
-                                isShoot = false
-                            end)
+            if isvehwhitelist() == false and isjobwhitelist() == false then
+                for k,v in pairs(Config.Locations) do
+                    local camname = v.SpeedCameraName
+                    local shootspeed = speed - v.MaxKmH
+                    if Config.PolicePay == true then
+                        if distanceCheck(pedcoord,v.Position) <= Config.Radius then
+                            if speed > v.MaxKmH and canReceiveBill() then
+                                if isShoot == false then
+                                    isShoot = true
+                                    ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
+                                    AnimpostfxPlay('PPOrange', 200, false)
+                                    SendBill(camname, shootspeed)
+                                    Citizen.SetTimeout(10000, function()
+                                        isShoot = false
+                                    end)
+                                end
+                            end
+                            letSleep = false
                         end
-                    end
-                    letSleep = false
-                end
-            elseif Config.PolicePay == false then
-                if job ~= Config.Society then
-                    if distanceCheck(pedcoord,v.Position) <= Config.Radius then
-                        if speed > v.MaxKmH and canReceiveBill() then
-                            if isShoot == false then
-                                isShoot = true
-                                ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
-                                AnimpostfxPlay('PPOrange', 200, false)
-                                SendBill(camname, shootspeed)
-                                Citizen.SetTimeout(10000, function()
-                                    isShoot = false
-                                end)
+                    elseif Config.PolicePay == false then
+                        if job ~= Config.Society then
+                            if distanceCheck(pedcoord,v.Position) <= Config.Radius then
+                                if speed > v.MaxKmH and canReceiveBill() then
+                                    if isShoot == false then
+                                        isShoot = true
+                                        ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
+                                        AnimpostfxPlay('PPOrange', 200, false)
+                                        SendBill(camname, shootspeed)
+                                        Citizen.SetTimeout(10000, function()
+                                            isShoot = false
+                                        end)
+                                    end
+                                end
+                                letSleep = false
                             end
                         end
-                        letSleep = false
                     end
                 end
-            end
-        end
-        for k,v in pairs(SpeedCameras) do
-            local shootspeed = speed - v.MaxKmH
-            local campos = v.CameraPosition
-            local camname = v.SpeedCameraName
             
-            if Config.PolicePay == true then
-                if distanceCheck(pedcoord,campos) <= Config.Radius then
-                    if speed > v.MaxKmH and canReceiveBill() then
-                        if isShoot == false then
-                            isShoot = true
-                            ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
-                            AnimpostfxPlay('PPOrange', 200, false)
-                            SendBill(camname, shootspeed)
-                            Citizen.SetTimeout(10000, function()
-                                isShoot = false
-                            end)
+                for k,v in pairs(SpeedCameras) do
+                    local shootspeed = speed - v.MaxKmH
+                    local campos = v.CameraPosition
+                    local camname = v.SpeedCameraName
+                    
+                    if Config.PolicePay == true then
+                        if distanceCheck(pedcoord,campos) <= Config.Radius then
+                            if speed > v.MaxKmH and canReceiveBill() then
+                                if isShoot == false then
+                                    isShoot = true
+                                    ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
+                                    AnimpostfxPlay('PPOrange', 200, false)
+                                    SendBill(camname, shootspeed)
+                                    Citizen.SetTimeout(10000, function()
+                                        isShoot = false
+                                    end)
+                                end
+                            end
+                            letSleep = false
                         end
-                    end
-                    letSleep = false
-                end
-            elseif Config.PolicePay == false then
-                if job ~= Config.Society then
-                    if distanceCheck(pedcoord,campos) <= Config.Radius then
-                        if speed > v.MaxKmH and canReceiveBill() then
-                            if isShoot == false then
-                                isShoot = true
-                                ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
-                                AnimpostfxPlay('PPOrange', 200, false)
-                                SendBill(camname, shootspeed)
-                                Citizen.SetTimeout(10000, function()
-                                    isShoot = false
-                                end)
+                    elseif Config.PolicePay == false then
+                        if job ~= Config.Society then
+                            if distanceCheck(pedcoord,campos) <= Config.Radius then
+                                if speed > v.MaxKmH and canReceiveBill() then
+                                    if isShoot == false then
+                                        isShoot = true
+                                        ESX.ShowNotification(_U("SpeedShoot",v.SpeedCameraName,math.floor(shootspeed)))
+                                        AnimpostfxPlay('PPOrange', 200, false)
+                                        SendBill(camname, shootspeed)
+                                        Citizen.SetTimeout(10000, function()
+                                            isShoot = false
+                                        end)
+                                    end
+                                end
+                                letSleep = false
                             end
                         end
-                        letSleep = false
                     end
                 end
             end
-        end
-
         if letSleep then
             Wait(500)
         end
@@ -209,6 +211,30 @@ Citizen.CreateThread(function()
     
 end)
 
+function isvehwhitelist()
+    local player = PlayerPedId()
+    local vehicleid = GetVehiclePedIsIn(player)
+
+    for i,v in ipairs(Config.BlacklistVehicle) do
+        if IsVehicleModel(vehicleid, GetHashKey(v)) == 1 then
+    
+            return true
+        end
+    end
+    return false
+end
+
+function isjobwhitelist()
+    local PlayerData = ESX.GetPlayerData()
+    local job = PlayerData.job.name
+
+    for i,v in ipairs(Config.BlacklistJob) do
+        if job == v then 
+            return true 
+        end
+    end
+    return false
+end
 
 --Commands
 RegisterCommand(Config.CreateSpeedCamera, function(source, args, rawCommand)
@@ -306,6 +332,7 @@ function SendBill(camname, shootspeed)
         end
     end
 end
+
 
 
 --Contex Menu

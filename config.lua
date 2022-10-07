@@ -38,5 +38,15 @@ Config.Locations = {
     }
 }
 
+-- Blacklist
 
+Config.BlacklistVehicle = {
+    "police",
+    "police2",
+    "ambulance"
+}
 
+Config.BlacklistJob = {
+    "police",
+    "ambulance"
+}

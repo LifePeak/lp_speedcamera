@@ -225,12 +225,12 @@ function isvehwhitelist()
 end
 
 function isjobwhitelist()
-    local PlayerData = ESX.GetPlayerData()
-    local job = PlayerData.job.name
+    PlayerData = ESX.GetPlayerData()
+    local my_job = PlayerData.job.name
 
     for i,v in ipairs(Config.BlacklistJob) do
-        if job == v then 
-            return true 
+        if my_job == v then
+            return true
         end
     end
     return false
